@@ -1,6 +1,4 @@
 🏛️ Court Scraper Backend
-Court Scraper Backend ek Python Flask-based REST API hai jo Delhi High Court website se case data scrape karke 
-local database mein store karti hai aur API ke through serve karti hai.
 
 Features
 1.Case Data Scraper – Web scraper se live case details fetch karta hai.
@@ -9,23 +7,11 @@ Features
 4.Logging System – Scraper activity aur errors ka detailed log rakhta hai.
 5.Postman Collection – API testing ke liye ready-made Postman file.
 
-court_scraper_backend/
-├── app/
-│   ├── api/                # Flask routes
-│   ├── db/                 # Database models and utilities
-│   ├── scraper/            # Scraper scripts
-│   ├── utils.py
-│   └── config.py
-├── data/                   # Input case list JSON
-├── docs/                   # API documentation and Postman collection
-├── logs/                   # Scraper logs and reports
-├── cases.db                # SQLite database
-├── run.py                  # App starter script
-├── requirements.txt        # Python dependencies
-└── tests/                  # Unit tests
-
 🔗 API Endpoints
-1.Fetch Case Details (POST)
+1.Get All Saved Cases (GET)
+  http://127.0.0.1:5000/get-cases
+  
+2.Fetch Case Details (POST)
   http://127.0.0.1:5000/fetch-case
   
   Request Body (JSON):
@@ -36,9 +22,8 @@ court_scraper_backend/
   }
 
   Response 
-  {
   "status": "success",
-  "data": [
+  "data": 
     {
          "case_no": "W.P.(C) 12345/2024",
          "status": "P",
@@ -48,11 +33,6 @@ court_scraper_backend/
          "court_no": "275",
          "orders_link": "https://delhihighcourt.nic.in/app/case-type-status-details/..."
     }
-    ]
-    }
-
-2.Get All Saved Cases (GET)
-  http://127.0.0.1:5000/get-cases
 
 ⚙️ Installation & Setup
 
@@ -73,6 +53,14 @@ court_scraper_backend/
 🧪 Run Tests
 python3 -m tests.test_routes
 python3 -m tests.test_db_fetch
+
+Sample Postman commands:
+curl -X POST http://127.0.0.1:5000/fetch-case \
+     -H "Content-Type: application/json" \
+     -d '{"case_type": "W.P.(C)", "case_number": "11211", "case_year": "2023"}'
+
+curl http://127.0.0.1:5000/get-cases
+
 
 📜 License
 This project is for educational & research purposes only.
